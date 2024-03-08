@@ -1,0 +1,7 @@
+build/
+*.wad
+.doomrc
+references/
+.DS_Store
+.vscode
+*.DLL
