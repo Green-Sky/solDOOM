@@ -60,3 +60,7 @@ endif()
 	#FetchContent_MakeAvailable(oatpp)
 #endif()
 
+if (NOT TARGET PureDOOM)
+	add_subdirectory(./pure_doom)
+endif()
+
