@@ -14,8 +14,5 @@ class DoomIMGUI {
 
 		// render imgui
 		float render(float time_delta);
-
-	public: // custom doom api
-		uint64_t getTexID(void);
 };
 

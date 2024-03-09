@@ -85,3 +85,23 @@ uint64_t Doom::getTexID(void) {
 	return _render_texture;
 }
 
+void Doom::doomKeyDown(doom_key_t key) {
+	doom_key_down(key);
+}
+
+void Doom::doomKeyUp(doom_key_t key) {
+	doom_key_up(key);
+}
+
+void Doom::doomButtonDown(doom_button_t button) {
+	doom_button_down(button);
+}
+
+void Doom::doomButtonUp(doom_button_t button) {
+	doom_button_up(button);
+}
+
+void Doom::doomMouseMove(int delta_x, int delta_y) {
+	doom_mouse_move(delta_x, delta_y);
+}
+

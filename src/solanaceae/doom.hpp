@@ -21,13 +21,13 @@ class Doom {
 	public: // custom doom api
 		uint64_t getTexID(void);
 
-// since we dont have an abstraction for this, or wont know what to do with it
-// these have to be called from the outside
-//void doom_key_down(doom_key_t key);
-//void doom_key_up(doom_key_t key);
-//void doom_button_down(doom_button_t button);
-//void doom_button_up(doom_button_t button);
-//void doom_mouse_move(int delta_x, int delta_y);
+		// since we dont have an abstraction for this, or wont know what to do with it
+		// these have to be called from the outside
+		void doomKeyDown(doom_key_t key);
+		void doomKeyUp(doom_key_t key);
+		void doomButtonDown(doom_button_t button);
+		void doomButtonUp(doom_button_t button);
+		void doomMouseMove(int delta_x, int delta_y);
 
 //void doom_set_default_int(const char* name, int value);
 //void doom_set_default_string(const char* name, const char* value);
