@@ -90,19 +90,23 @@ const static std::vector<std::pair<ImGuiKey, doom_key_t>> g_all_keys {
 float DoomIMGUI::render(float time_delta) {
 	float doom_interval {1.f};
 
-	if (ImGui::Begin("doom")) {
-		for (const auto& [imkey, dokey] : g_all_keys) {
-			// TODO: unpress all keys on focus loss
-			if (ImGui::IsKeyPressed(imkey, false)) {
-				_doom.doomKeyDown(dokey);
-			}
-			if (ImGui::IsKeyReleased(imkey)) {
-				_doom.doomKeyUp(dokey);
+	if (ImGui::Begin("doom", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
+		ImGui::SliderFloat("scale", &_size_scaler, 1.f, 5.f);
+
+		if (ImGui::IsWindowFocused()) {
+			for (const auto& [imkey, dokey] : g_all_keys) {
+				// TODO: unpress all keys on focus loss
+				if (ImGui::IsKeyPressed(imkey, false)) {
+					_doom.doomKeyDown(dokey);
+				}
+				if (ImGui::IsKeyReleased(imkey)) {
+					_doom.doomKeyUp(dokey);
+				}
 			}
 		}
 
 		doom_interval = _doom.render(time_delta);
-		ImGui::Image(reinterpret_cast<void*>(_doom.getTexID()), {320, 200*1.2});
+		ImGui::Image(reinterpret_cast<void*>(_doom.getTexID()), {_size_scaler * 320, _size_scaler * 200 * 1.2f});
 	}
 	ImGui::End();
 
