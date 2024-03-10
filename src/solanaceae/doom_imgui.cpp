@@ -93,15 +93,13 @@ float DoomIMGUI::render(float time_delta) {
 	if (ImGui::Begin("doom", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
 		ImGui::SliderFloat("scale", &_size_scaler, 1.f, 5.f);
 
-		if (ImGui::IsWindowFocused()) {
-			for (const auto& [imkey, dokey] : g_all_keys) {
-				// TODO: unpress all keys on focus loss
-				if (ImGui::IsKeyPressed(imkey, false)) {
-					_doom.doomKeyDown(dokey);
-				}
-				if (ImGui::IsKeyReleased(imkey)) {
-					_doom.doomKeyUp(dokey);
-				}
+		const bool window_focused = ImGui::IsWindowFocused();
+		for (const auto& [imkey, dokey] : g_all_keys) {
+			if (window_focused && ImGui::IsKeyPressed(imkey, false)) {
+				_doom.doomKeyDown(dokey);
+			}
+			if (ImGui::IsKeyReleased(imkey)) {
+				_doom.doomKeyUp(dokey);
 			}
 		}
 

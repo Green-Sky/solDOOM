@@ -27,12 +27,6 @@ void my_doom_gettime(int* sec, int* usec) {
 	}
 }
 
-//static const char* doom_argv[] {
-	//"self.exe",
-	//"-timedemo",
-	//"",
-//};
-
 Doom::Doom(
 	TextureUploaderI& tu
 ) : _tu(tu) {
@@ -56,8 +50,6 @@ Doom::Doom(
 	// does not actually work
 	doom_set_resolution(_width, _height);
 
-	// HATE
-	//doom_init(2, const_cast<char**>(doom_argv), 0);
 	doom_init(0, nullptr, 0);
 
 	std::vector<uint8_t> tmp_vec(4 * _width * _height, 0x00); // the api requires data for texture creation
@@ -75,9 +67,11 @@ float Doom::render(float time_delta) {
 
 	doom_update();
 
+	// TODO: use RGB instead?
 	const uint8_t* new_image = doom_get_framebuffer(4);
 	_tu.updateRGBA(_render_texture, new_image, 4 * _width * _height);
 
+	// TODO: allow more?
 	return 1.f/60.f;
 }
 
