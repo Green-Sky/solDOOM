@@ -12,7 +12,7 @@ class DoomIMGUI {
 		DoomIMGUI(
 			TextureUploaderI& tu
 		);
-		~DoomIMGUI(void);
+		virtual ~DoomIMGUI(void);
 
 		// render imgui
 		float render(float time_delta);

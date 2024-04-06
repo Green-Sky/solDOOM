@@ -14,7 +14,7 @@ class Doom {
 		Doom(
 			TextureUploaderI& tu
 		);
-		~Doom(void);
+		virtual ~Doom(void);
 
 		float render(float time_delta);
 
@@ -51,12 +51,12 @@ class Doom {
 //void doom_set_print(doom_print_fn print_fn);
 //void doom_set_malloc(doom_malloc_fn malloc_fn, doom_free_fn free_fn);
 //void doom_set_file_io(doom_open_fn open_fn,
-                      //doom_close_fn close_fn,
-                      //doom_read_fn read_fn,
-                      //doom_write_fn write_fn,
-                      //doom_seek_fn seek_fn,
-                      //doom_tell_fn tell_fn,
-                      //doom_eof_fn eof_fn);
+						//doom_close_fn close_fn,
+						//doom_read_fn read_fn,
+						//doom_write_fn write_fn,
+						//doom_seek_fn seek_fn,
+						//doom_tell_fn tell_fn,
+						//doom_eof_fn eof_fn);
 //void doom_set_gettime(doom_gettime_fn gettime_fn);
 //void doom_set_exit(doom_exit_fn exit_fn);
 //void doom_set_getenv(doom_getenv_fn getenv_fn);
