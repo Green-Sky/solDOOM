@@ -33,9 +33,15 @@ SOLANA_PLUGIN_EXPORT uint32_t solana_plugin_start(struct SolanaAPI* solana_api) 
 	try {
 		//auto* cr = PLUG_RESOLVE_INSTANCE_VERSIONED(Contact3Registry, "1");
 		auto* imguic = PLUG_RESOLVE_INSTANCE_VERSIONED(ImGuiContext, ImGui::GetVersion());
-		auto* tu = PLUG_RESOLVE_INSTANCE(TextureUploaderI);
+		auto* imguimemaf = PLUG_RESOLVE_INSTANCE_VERSIONED(ImGuiMemAllocFunc, ImGui::GetVersion());
+		auto* imguimemff = PLUG_RESOLVE_INSTANCE_VERSIONED(ImGuiMemFreeFunc, ImGui::GetVersion());
+		// meh
+		auto* imguimemud = plug_resolveInstanceOptional<void*>(solana_api, "ImGuiMemUserData", ImGui::GetVersion());
 
+		ImGui::SetAllocatorFunctions(imguimemaf, imguimemff, imguimemud);
 		ImGui::SetCurrentContext(imguic);
+
+		auto* tu = PLUG_RESOLVE_INSTANCE(TextureUploaderI);
 
 		// static store, could be anywhere tho
 		// construct with fetched dependencies
