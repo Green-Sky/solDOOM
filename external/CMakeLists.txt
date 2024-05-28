@@ -18,9 +18,7 @@ endif()
 if (NOT TARGET imgui)
 	FetchContent_Declare(imgui
 		GIT_REPOSITORY https://github.com/ocornut/imgui.git
-		#GIT_TAG d6cb3c9 # v1.90.1
-		#GIT_TAG b475309fa1e # tomato at ~v0.2
-		GIT_TAG 6ccc561 # v1.90.6
+		GIT_TAG 00ad3c6 # v1.90.7
 		EXCLUDE_FROM_ALL
 	)
 
