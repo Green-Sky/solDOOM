@@ -18,14 +18,15 @@ endif()
 if (NOT TARGET imgui)
 	FetchContent_Declare(imgui
 		GIT_REPOSITORY https://github.com/ocornut/imgui.git
-		GIT_TAG 00ad3c6 # v1.90.7
+		GIT_TAG cb16568 # v1.91.3
 		EXCLUDE_FROM_ALL
+		CONFIGURE_COMMAND "" # remove?
 	)
 
 	# imgui does not provide a cmake
 	FetchContent_GetProperties(imgui)
 	if(NOT imgui_POPULATED)
-		FetchContent_Populate(imgui)
+		FetchContent_MakeAvailable(imgui)
 
 		add_library(imgui STATIC
 			${imgui_SOURCE_DIR}/imgui.h
@@ -45,6 +46,7 @@ if (NOT TARGET imgui)
 		)
 		target_include_directories(imgui PUBLIC ${imgui_SOURCE_DIR})
 		target_compile_features(imgui PUBLIC cxx_std_11)
+		target_compile_definitions(imgui PUBLIC IMGUI_USE_WCHAR32)
 	endif()
 endif()
 
