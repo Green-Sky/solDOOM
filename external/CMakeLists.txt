@@ -18,7 +18,7 @@ endif()
 if (NOT TARGET imgui)
 	FetchContent_Declare(imgui
 		GIT_REPOSITORY https://github.com/ocornut/imgui.git
-		GIT_TAG cb16568 # v1.91.3
+		GIT_TAG 5c1d2d1e4c562a2ed3efbc64476e703a655b45fd # v1.91.7
 		EXCLUDE_FROM_ALL
 		CONFIGURE_COMMAND "" # remove?
 	)

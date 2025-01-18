@@ -104,7 +104,7 @@ float DoomIMGUI::render(float time_delta) {
 		}
 
 		doom_interval = _doom.render(time_delta);
-		ImGui::Image(reinterpret_cast<void*>(_doom.getTexID()), {_size_scaler * 320, _size_scaler * 200 * 1.2f});
+		ImGui::Image(_doom.getTexID(), {_size_scaler * 320, _size_scaler * 200 * 1.2f});
 	}
 	ImGui::End();
 
