@@ -7,14 +7,14 @@ on:
     branches: [ master ]
 
 env:
-  BUILD_TYPE: Release
+  BUILD_TYPE: RelWidthDebInfo
   BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 jobs:
   linux-ubuntu:
     timeout-minutes: 10
 
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v4
@@ -25,6 +25,10 @@ jobs:
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -j 4
 
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      run: ctest -C ${{env.BUILD_TYPE}}
+
     - name: Determine tag name
       id: tag
       shell: bash
@@ -32,10 +36,10 @@ jobs:
       run: |
         SHORT_HASH="$(git rev-parse --short=7 HEAD)"
         if [[ "${{ env.BRANCH_NAME }}" == "master" ]]; then
-          echo "name=${SHORT_HASH}" >> $GITHUB_OUTPUT
+          echo "name=dev-${SHORT_HASH}" >> $GITHUB_OUTPUT
         else
           SAFE_NAME=$(echo "${{ env.BRANCH_NAME }}" | tr '/' '-')
-          echo "name=${SAFE_NAME}-${SHORT_HASH}" >> $GITHUB_OUTPUT
+          echo "name=dev-${SAFE_NAME}-${SHORT_HASH}" >> $GITHUB_OUTPUT
         fi
 
     - name: Compress artifacts
@@ -78,10 +82,10 @@ jobs:
       run: |
         SHORT_HASH="$(git rev-parse --short=7 HEAD)"
         if [[ "${{ env.BRANCH_NAME }}" == "master" ]]; then
-          echo "name=${SHORT_HASH}" >> $GITHUB_OUTPUT
+          echo "name=dev-${SHORT_HASH}" >> $GITHUB_OUTPUT
         else
           SAFE_NAME=$(echo "${{ env.BRANCH_NAME }}" | tr '/' '-')
-          echo "name=${SAFE_NAME}-${SHORT_HASH}" >> $GITHUB_OUTPUT
+          echo "name=dev-${SAFE_NAME}-${SHORT_HASH}" >> $GITHUB_OUTPUT
         fi
 
     - name: Compress artifacts
@@ -98,8 +102,7 @@ jobs:
           ${{github.workspace}}/${{ github.event.repository.name }}-${{ steps.tag.outputs.name }}-${{ runner.os }}-msvc-x86_64.zip
 
   release:
-    if: false
-    #if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) }}
+    if: ${{ ( github.event_name == 'push' && github.ref == 'refs/heads/master' ) }}
 
     runs-on: ubuntu-latest
 
@@ -120,10 +123,10 @@ jobs:
       run: |
         SHORT_HASH="$(git rev-parse --short=7 HEAD)"
         if [[ "${{ env.BRANCH_NAME }}" == "master" ]]; then
-          echo "name=${SHORT_HASH}" >> $GITHUB_OUTPUT
+          echo "name=dev-${SHORT_HASH}" >> $GITHUB_OUTPUT
         else
           SAFE_NAME=$(echo "${{ env.BRANCH_NAME }}" | tr '/' '-')
-          echo "name=${SAFE_NAME}-${SHORT_HASH}" >> $GITHUB_OUTPUT
+          echo "name=dev-${SAFE_NAME}-${SHORT_HASH}" >> $GITHUB_OUTPUT
         fi
 
     - name: Download artifacts
