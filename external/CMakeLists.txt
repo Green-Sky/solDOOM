@@ -18,9 +18,8 @@ endif()
 if (NOT TARGET imgui)
 	FetchContent_Declare(imgui
 		GIT_REPOSITORY https://github.com/ocornut/imgui.git
-		GIT_TAG 5c1d2d1e4c562a2ed3efbc64476e703a655b45fd # v1.91.7
+		GIT_TAG 5d4126876bc10396d4c6511853ff10964414c776 # v1.92.1
 		EXCLUDE_FROM_ALL
-		CONFIGURE_COMMAND "" # remove?
 	)
 
 	# imgui does not provide a cmake
