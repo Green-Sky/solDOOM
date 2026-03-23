@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Configure CMake
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
@@ -47,7 +47,7 @@ jobs:
       run: |
         tar -czvf ${{ github.event.repository.name }}-${{ steps.tag.outputs.name }}-${{ runner.os }}-ubuntu22.04-x86_64.tar.gz -C ${{github.workspace}}/build/bin/ .
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         # TODO: simpler name?
         name: ${{ github.event.repository.name }}-${{ steps.tag.outputs.name }}-${{ runner.os }}-ubuntu22.04-x86_64
@@ -62,7 +62,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     # setup vs env
     - uses: ilammy/msvc-dev-cmd@v1
@@ -93,7 +93,7 @@ jobs:
       run: |
         Compress-Archive -Path ${{github.workspace}}/build/bin/* -Destination ${{ github.event.repository.name }}-${{ steps.tag.outputs.name }}-${{ runner.os }}-msvc-x86_64.zip
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
         # TODO: simpler name?
         name: ${{ github.event.repository.name }}-${{ steps.tag.outputs.name }}-${{ runner.os }}-msvc-x86_64
@@ -114,7 +114,7 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
 
     - name: Determine tag name
       id: tag
@@ -131,7 +131,7 @@ jobs:
 
     - name: Download artifacts
       id: download-artifact
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v7
       with:
         path: ./artifacts/
 
