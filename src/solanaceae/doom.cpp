@@ -7,8 +7,6 @@
 #include <cstdlib>
 #include <cstdio>
 
-#include <iostream>
-
 void my_doom_print(const char* str) {
 	std::printf("%s", str);
 }
@@ -98,4 +96,3 @@ void Doom::doomButtonUp(doom_button_t button) {
 void Doom::doomMouseMove(int delta_x, int delta_y) {
 	doom_mouse_move(delta_x, delta_y);
 }
-

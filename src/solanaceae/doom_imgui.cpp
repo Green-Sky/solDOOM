@@ -65,13 +65,13 @@ const static std::vector<std::pair<ImGuiKey, doom_key_t>> g_all_keys {
 	{ImGuiKey_Y, DOOM_KEY_Y},
 	{ImGuiKey_Z, DOOM_KEY_Z},
 	{ImGuiKey_Backspace, DOOM_KEY_BACKSPACE},
-	{ImGuiKey_ModCtrl, DOOM_KEY_CTRL},
+	{ImGuiMod_Ctrl, DOOM_KEY_CTRL},
 	{ImGuiKey_LeftArrow, DOOM_KEY_LEFT_ARROW},
 	{ImGuiKey_UpArrow, DOOM_KEY_UP_ARROW},
 	{ImGuiKey_RightArrow, DOOM_KEY_RIGHT_ARROW},
 	{ImGuiKey_DownArrow, DOOM_KEY_DOWN_ARROW},
-	{ImGuiKey_ModShift, DOOM_KEY_SHIFT},
-	{ImGuiKey_ModAlt, DOOM_KEY_ALT},
+	{ImGuiMod_Shift, DOOM_KEY_SHIFT},
+	{ImGuiMod_Alt, DOOM_KEY_ALT},
 	{ImGuiKey_F1, DOOM_KEY_F1},
 	{ImGuiKey_F2, DOOM_KEY_F2},
 	{ImGuiKey_F3, DOOM_KEY_F3},
@@ -110,4 +110,3 @@ float DoomIMGUI::render(float time_delta) {
 
 	return doom_interval;
 }
-
